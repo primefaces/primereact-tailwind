@@ -1,0 +1,119 @@
+{
+    "data": [
+        {
+            "name": "Getting Started",
+            "icon": "pi pi-home",
+            "children": [
+                {
+                    "name": "Overview",
+                    "to": "/overview"
+                },
+                {
+                    "name": "Next.js",
+                    "to": "/nextjs"
+                },
+                {
+                    "name": "Vite",
+                    "to": "/vite"
+                }
+            ]
+        },
+        {
+            "name": "Components",
+            "icon": "pi pi-compass",
+            "children": [
+                {
+                    "name": "Form",
+                    "children": [
+                        {
+                            "name": "InputText",
+                            "to": "/inputtext"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Builder",
+            "to": "/builder",
+            "icon": "pi pi-box"
+        },
+        {
+            "name": "Gallery",
+            "to": "/gallery",
+            "icon": "pi pi-images"
+        },
+        {
+            "name": "Guides",
+            "icon": "pi pi-book",
+            "children": [
+                {
+                    "name": "Overriding Presets",
+                    "to": "/guides/overriding-presets"
+                },
+                {
+                    "name": "Building a UI Library",
+                    "to": "/guides/building-ui-library"
+                }
+            ]
+        },
+        {
+            "name": "Icons",
+            "icon": "pi pi-eye",
+            "children": [
+                {
+                    "name": "Prime Icons",
+                    "to": "/icons"
+                },
+                {
+                    "name": "Custom Icons",
+                    "to": "/customicons"
+                }
+            ]
+        },
+        {
+            "name": "Support",
+            "icon": "pi pi-question",
+            "children": [
+                {
+                    "name": "Discord",
+                    "href": "https://discord.gg/gzKFYnpmCY"
+                },
+                {
+                    "name": "Forum",
+                    "href": "https://github.com/orgs/primefaces/discussions"
+                },
+                {
+                    "name": "PRO",
+                    "to": "/support"
+                }
+            ]
+        },
+        {
+            "name": "Discover",
+            "icon": "pi pi-search",
+            "children": [
+                {
+                    "name": "About Us",
+                    "to": "/team"
+                },
+                {
+                    "name": "Newsletter",
+                    "href": "https://www.primefaces.org/newsletter"
+                },
+                {
+                    "name": "Source Code",
+                    "href": "https://github.com/primefaces/primereact-tailwind"
+                },
+                {
+                    "name": "Store",
+                    "href": "https://www.primefaces.org/store/"
+                },
+                {
+                    "name": "Twitter",
+                    "href": "https://twitter.com/primereact?lang=en"
+                }
+            ]
+        }
+    ]
+}
