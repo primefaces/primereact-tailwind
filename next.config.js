@@ -1,3 +1,5 @@
+const { version, dependencies } = require('./package.json');
+
 module.exports = {
     reactStrictMode: process.env.NODE_ENV === 'production' ? false : true,
     trailingSlash: true,
@@ -12,5 +14,9 @@ module.exports = {
         });
 
         return config;
+    },
+    env: {
+        version,
+        dependencies
     }
 };

@@ -29,7 +29,8 @@ function MenuItem(props) {
                 </StyleClass>
             )}
             {menuItem?.href && (
-                <Link href={menuItem.href} passHref>
+                <Link href={menuItem.href} passHref legacyBehavior>
+                    {/* TODO: Update Link Component Usage */}
                     <a target="_blank" rel="noopener noreferrer">
                         {menuItem?.icon && root && (
                             <span className="menu-icon">
@@ -42,7 +43,8 @@ function MenuItem(props) {
                 </Link>
             )}
             {menuItem?.to && (
-                <Link href={menuItem?.to} passHref>
+                <Link href={menuItem?.to} passHref legacyBehavior>
+                    {/* TODO: Update Link Component Usage */}
                     <a className={classNames({ 'router-link-active': menuItem.to === router.pathname })}>
                         {menuItem?.icon && root && (
                             <span className="menu-icon">

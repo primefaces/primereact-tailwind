@@ -2,18 +2,14 @@ import { StyleClass } from 'primereact/styleclass';
 import { classNames } from 'primereact/utils';
 import Link from 'next/link';
 import { useContext, useEffect, useRef } from 'react';
-import Config from '@/components/layout/config';
-import AppContentContext from '@/components/layout/appcontentcontext';
+import PresetMenu from '@/components/layout/presetMenu';
+import { PresetContext } from '@/providers/presetProvider';
 
 export default function Topbar(props) {
-    const { darkMode, toggleDarkMode } = useContext(AppContentContext);
+    const { isDarkMode, toggleDarkMode } = useContext(PresetContext);
     const configRef = useRef(null);
     const onMenuButtonClick = () => {
         props.onMenuButtonClick();
-    };
-
-    const onConfigButtonClick = () => {
-        props.onConfigButtonClick();
     };
 
     const containerElement = useRef(null);
@@ -49,7 +45,8 @@ export default function Topbar(props) {
         <div ref={containerElement} className="layout-topbar">
             <div className="layout-topbar-inner">
                 <div className="layout-topbar-logo-container">
-                    <Link href="/">
+                    <Link href="/" legacyBehavior>
+                        {/* TODO: Update Link Component Usage */}
                         <a className="layout-topbar-logo" aria-label="PrimeReact logo">
                             <svg width="146" height="35" viewBox="0 0 146 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -98,7 +95,8 @@ export default function Topbar(props) {
                             </svg>
                         </a>
                     </Link>
-                    <Link href="/" aria-label="PrimeReact logo">
+                    <Link href="/" aria-label="PrimeReact logo" legacyBehavior>
+                        {/* TODO: Update Link Component Usage */}
                         <a className="layout-topbar-icon">
                             <svg width="32" height="35" viewBox="0 0 32 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_2642_813" className="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="35">
@@ -155,16 +153,16 @@ export default function Topbar(props) {
                     </li>
                     <li>
                         <button type="button" className="topbar-item" onClick={() => toggleDarkMode()}>
-                            <i className={classNames('pi', { 'pi-moon': darkMode, 'pi-sun': !darkMode })}></i>
+                            <i className={classNames('pi', { 'pi-moon': isDarkMode, 'pi-sun': !isDarkMode })}></i>
                         </button>
                     </li>
-                    <li>
+                    <li className="relative">
                         <StyleClass nodeRef={configRef} selector="@next" enterClassName="hidden" enterActiveClassName="scalein" leaveToClassName="hidden" leaveActiveClassName="fadeout" hideOnOutsideClick>
                             <button ref={configRef} type="button" className="topbar-item">
                                 <i className="pi pi-palette"></i>
                             </button>
                         </StyleClass>
-                        <Config />
+                        <PresetMenu />
                     </li>
                     {props.showMenuButton && (
                         <li className="menu-button">

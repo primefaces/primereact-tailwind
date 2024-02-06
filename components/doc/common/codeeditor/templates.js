@@ -1,13 +1,15 @@
-import pkg from 'package.json';
 import { services } from './services';
 
+const version = process.env.version;
+const dependencies = process.dependencies;
+
 const PrimeReact = {
-    version: 'latest' || pkg.version, // latest
+    version: 'latest' || version, // latest
     description:
         'PrimeReact is an open source UI library for React featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support. In addition, it integrates with PrimeBlock, which has 370+ ready to use UI blocks to build spectacular applications in no time.'
 };
 
-const app_dependencies = pkg ? pkg.dependencies : {};
+const app_dependencies = dependencies ? dependencies : {};
 
 const typeScriptDependencies = {
     '@types/react-dom': '^18.0.0',
@@ -95,7 +97,7 @@ const getUnstyledFiles = (path, isTypeScript) => {
     const tailwindConfig = {
         content: `/** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: 'class',
+    darkMode: 'className',
     content: [
         './index.html',
         './src/**/*.{vue,js,ts,jsx,tsx}',

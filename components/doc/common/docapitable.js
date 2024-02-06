@@ -2,11 +2,11 @@ import { ObjectUtils, classNames } from 'primereact/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import AppContentContext from '../../layout/appcontentcontext';
 import { DocSectionText } from './docsectiontext';
+import { PresetContext } from '@/providers/presetProvider';
 
 const DocApiTable = (props) => {
-    const appContentContext = useContext(AppContentContext);
+    const { isDarkMode } = useContext(PresetContext);
 
     const { id, data, name, description, allowLink = true } = props;
     const isPT = id.startsWith('pt.');
@@ -39,7 +39,8 @@ const DocApiTable = (props) => {
                         return (
                             <React.Fragment key={i}>
                                 {i !== 0 ? '|' : ''}
-                                <Link href={router.basePath + router.pathname + `#${apiId}`} target="_self">
+                                <Link href={router.basePath + router.pathname + `#${apiId}`} target="_self" legacyBehavior>
+                                    {/* TODO: Update Link Component Usage */}
                                     <a onClick={() => onClick(apiId, 'smooth')}>{sValue}</a>
                                 </Link>
                             </React.Fragment>
@@ -52,7 +53,8 @@ const DocApiTable = (props) => {
                             {isLinkableOption ? (
                                 <span id={id + '.' + sValue} className={classNames('doc-option-name', { 'line-through cursor-pointer': !!deprecated })} title={deprecated}>
                                     {sValue}
-                                    <Link href={router.basePath + router.pathname + `#${id + '.' + sValue}`} target="_self">
+                                    <Link href={router.basePath + router.pathname + `#${id + '.' + sValue}`} target="_self" legacyBehavior>
+                                        {/* TODO: Update Link Component Usage */}
                                         <a onClick={() => onClick(id + '.' + sValue)} className="doc-option-link">
                                             <i className="pi pi-link"></i>
                                         </a>
@@ -71,7 +73,8 @@ const DocApiTable = (props) => {
             return isLinkableOption ? (
                 <span id={id + '.' + val} className={classNames('doc-option-name', { 'line-through cursor-pointer': !!deprecated })} title={deprecated}>
                     {val}
-                    <Link href={router.basePath + router.pathname + `#${id + '.' + val}`} target="_self">
+                    <Link href={router.basePath + router.pathname + `#${id + '.' + val}`} target="_self" legacyBehavior>
+                        {/* TODO: Update Link Component Usage */}
                         <a onClick={() => onClick(id + '.' + val)} className="doc-option-link">
                             <i className="pi pi-link"></i>
                         </a>
@@ -116,15 +119,13 @@ const DocApiTable = (props) => {
                                                             );
                                                         })
                                                     ) : k === 'default' ? (
-                                                        <div className={classNames('doc-option-default', { 'doc-option-dark': appContentContext.darkTheme, 'doc-option-light': !appContentContext.darkTheme })}>
+                                                        <div className={classNames('doc-option-default', { 'doc-option-dark': !isDarkMode, 'doc-option-light': isDarkMode })}>
                                                             {ObjectUtils.isEmpty(v) ? 'null' : createContent(v, k === 'name', d['deprecated'])}
                                                         </div>
                                                     ) : k === 'type' ? (
                                                         <span className="doc-option-type">{createContent(v, k === 'name', d['deprecated'])}</span>
                                                     ) : k === 'returnType' ? (
-                                                        <div className={classNames('doc-option-returnType', { 'doc-option-dark': appContentContext.darkTheme, 'doc-option-light': !appContentContext.darkTheme })}>
-                                                            {createContent(v, k === 'name', d['deprecated'])}
-                                                        </div>
+                                                        <div className={classNames('doc-option-returnType', { 'doc-option-dark': !isDarkMode, 'doc-option-light': isDarkMode })}>{createContent(v, k === 'name', d['deprecated'])}</div>
                                                     ) : k === 'description' || k === 'values' ? (
                                                         <span className="doc-option-description">{v}</span>
                                                     ) : (

@@ -1,42 +1,37 @@
-import AppContentContext from '@/components/layout/appcontentcontext';
+import { useContext, useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { PrimeReactContext } from 'primereact/api';
+import { DomHandler, classNames } from 'primereact/utils';
 import Footer from '@/components/layout/footer';
 import Menu from '@/components/layout/menu';
 import Topbar from '@/components/layout/topbar';
-import { PrimeReactContext } from 'primereact/api';
-import { DomHandler, classNames } from 'primereact/utils';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
 import NewsSection from '@/components/news/newssection';
+import { PresetContext } from '@/providers/presetProvider';
+import { NewsContext } from '@/providers/newsProvider';
 
 export default function Layout({ children }) {
     const [sidebarActive, setSidebarActive] = useState(false);
     const { ripple } = useContext(PrimeReactContext);
-    const { theme, darkMode, newsActive, changeTheme } = useContext(AppContentContext);
+    const {
+        preset: { name: preset },
+        isDarkMode
+    } = useContext(PresetContext);
+    const { isNewsActive } = useContext(NewsContext);
     const router = useRouter();
 
     const wrapperClassName = classNames('layout-wrapper', {
-        'layout-news-active': newsActive,
+        'layout-news-active': isNewsActive,
         'layout-ripple-disabled': ripple === false
     });
 
-    const toggleDarkMode = () => {
-        let newTheme = null;
-
-        if (darkMode) {
-            newTheme = theme.replace('dark', 'light');
-        } else {
-            if (theme.includes('light') && theme !== 'fluent-light') newTheme = theme.replace('light', 'dark');
-            else newTheme = 'lara-dark-cyan';
-        }
-
-        changeTheme(newTheme, !darkMode);
-    };
-
     useEffect(() => {
-        if (sidebarActive) DomHandler.blockBodyScroll('blocked-scroll');
-        else DomHandler.unblockBodyScroll('blocked-scroll');
-    }, [sidebarActive]); // eslint-disable-line react-hooks/exhaustive-deps
+        if (sidebarActive) {
+            DomHandler.blockBodyScroll('blocked-scroll');
+        } else {
+            DomHandler.unblockBodyScroll('blocked-scroll');
+        }
+    }, [sidebarActive]);
 
     useEffect(() => {
         const handleRouteChangeComplete = (l) => {
@@ -48,10 +43,10 @@ export default function Layout({ children }) {
         return () => {
             router.events.off('routeChangeComplete', handleRouteChangeComplete);
         };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <div className={wrapperClassName} data-p-theme={theme}>
+        <div className={wrapperClassName} data-p-theme={preset}>
             <Head>
                 <title>PrimeReact - React UI Component Library</title>
                 <meta charSet="UTF-8" />

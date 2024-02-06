@@ -8,7 +8,8 @@ export function DocSubSection(props) {
         <div style={{ marginBottom: '30px' }}>
             <h3 className="doc-section-label">
                 {props.label}
-                <Link href={router.basePath + router.pathname + '#' + props.id} target="_self">
+                <Link href={router.basePath + router.pathname + '#' + props.id} target="_self" legacyBehavior>
+                    {/* TODO: Update Link Component Usage */}
                     <a id={props.id}>#</a>
                 </Link>
             </h3>

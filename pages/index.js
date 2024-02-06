@@ -1,24 +1,16 @@
-import AppContentContext from '@/components/layout/appcontentcontext';
-import Topbar from '@/components/layout/topbar';
-import { useMountEffect } from 'primereact/hooks';
-import { classNames } from 'primereact/utils';
-import NewsSection from '@/components/news/newssection';
-import Head from 'next/head';
 import { useContext } from 'react';
+import Head from 'next/head';
+import { classNames } from 'primereact/utils';
+import Topbar from '@/components/layout/topbar';
+import NewsSection from '@/components/news/newssection';
+import { NewsContext } from '@/providers/newsProvider';
+import { PresetContext } from '@/providers/presetProvider';
 
 export default function Home() {
-    const { newsActive, darkMode, changePreset } = useContext(AppContentContext);
-    const landingClass = classNames('landing', { 'layout-light': !darkMode, 'layout-dark': darkMode, 'layout-news-active': newsActive });
+    const { isNewsActive } = useContext(NewsContext);
+    const { isDarkMode, toggleDarkMode } = useContext(PresetContext);
 
-    const toggleDarkMode = () => {
-        const newTheme = darkMode ? 'lara-light-cyan' : 'lara-dark-cyan';
-
-        //changeTheme(newTheme, !darkMode);
-    };
-
-    useMountEffect(() => {
-        //changeTheme(darkMode ? 'lara-dark-cyan' : 'lara-light-cyan', darkMode);
-    });
+    const landingClass = classNames('landing', { 'layout-light': !isDarkMode, 'layout-dark': isDarkMode, 'layout-news-active': isNewsActive });
 
     return (
         <div className={landingClass}>

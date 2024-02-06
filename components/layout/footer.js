@@ -1,7 +1,5 @@
-import pkg from 'package.json';
-
 export default function Footer() {
-    const version = pkg.version;
+    const version = process.env.version;
 
     return (
         <div className="layout-footer">
