@@ -1,48 +1,6 @@
 import sdk from '@stackblitz/sdk';
 import { getVite } from './templates';
 
-const useCodeSandbox = (props) => {
-    const getSandboxParameters = (sourceType) => {
-        const sandboxDependencies = {
-            vite: '^4.0.0',
-            '@vitejs/plugin-react': '^4.0.0'
-        };
-        const { files, dependencies, sourceFileName } = getVite({ dependencies: sandboxDependencies, ...props }, sourceType);
-
-        files['sandbox.config.json'] = {
-            content: {
-                infiniteLoopProtection: false,
-                container: {
-                    node: '16'
-                }
-            }
-        };
-
-        return { files, dependencies, sourceFileName };
-    };
-
-    return (sourceType, errorCallback) => {
-        const sandboxParameters = getSandboxParameters(sourceType);
-
-        if (!sandboxParameters) {
-            errorCallback && errorCallback({ summary: 'Not Available', detail: 'That code sandbox demonstration is not available!' });
-
-            return;
-        }
-
-        fetch('https://codesandbox.io/api/v1/sandboxes/define?json=1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify(sandboxParameters)
-        })
-            .then((response) => response.json())
-            .then((data) => window.open(`https://codesandbox.io/s/${data.sandbox_id}`, '_blank'));
-    };
-};
-
 export const useStackBlitz = (props) => {
     const getStackBlitzParameters = (sourceType) => getVite(props, sourceType);
 
@@ -92,11 +50,9 @@ export const useStackBlitz = (props) => {
  * @returns
  */
 export const useCodeEditor = (props) => {
-    const openCodeSandbox = useCodeSandbox(props);
     const openStackBlitz = useStackBlitz(props);
 
     return {
-        openCodeSandbox,
         openStackBlitz
     };
 };
