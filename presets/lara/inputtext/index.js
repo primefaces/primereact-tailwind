@@ -1,6 +1,8 @@
+import { classNames } from 'primereact/utils';
+
 export default {
     root: ({ props, context, parent }) => ({
-        class: [
+        className: classNames(
             // Font
             'font-sans leading-none',
 
@@ -13,10 +15,10 @@ export default {
             },
 
             // Shape
-            { 'rounded-md': parent?.instance.$name !== 'InputGroup' },
-            { 'first:rounded-l-md rounded-none last:rounded-r-md': parent?.instance.$name == 'InputGroup' },
-            { 'border-0 border-y border-l last:border-r': parent?.instance.$name == 'InputGroup' },
-            { 'first:ml-0 ml-[-1px]': parent?.instance.$name == 'InputGroup' && !props.showButtons },
+            { 'rounded-md': parent?.state['__TYPE'] !== 'InputGroup' },
+            { 'first:rounded-l-md rounded-none last:rounded-r-md': parent?.state['__TYPE'] == 'InputGroup' },
+            { 'border-0 border-y border-l last:border-r': parent?.state['__TYPE'] == 'InputGroup' },
+            { 'first:ml-0 ml-[-1px]': parent?.state['__TYPE'] == 'InputGroup' && !props.showButtons },
 
             // Colors
             'text-surface-600 dark:text-surface-200',
@@ -33,7 +35,8 @@ export default {
 
             // Misc
             'appearance-none',
-            'transition-colors duration-200'
-        ]
+            'transition-colors duration-200',
+            props.className
+        )
     })
 };

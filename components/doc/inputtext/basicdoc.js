@@ -8,7 +8,7 @@ export function BasicDoc(props) {
 
     const code = {
         basic: `
-<InputText value={value} onChange={(e) => setValue(e.target.value)} />
+<InputText value={value} onChange={(e) => setValue(e.target.value)} type="text" />
         `,
         javascript: `
 import React, { useState } from "react";
@@ -48,7 +48,7 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+                <InputText value={value} onChange={(e) => setValue(e.target.value)} type="text" />
             </div>
             <DocSectionCode code={code} />
         </>

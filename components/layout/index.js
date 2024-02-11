@@ -12,11 +12,8 @@ import { NewsContext } from '@/providers/newsProvider';
 
 export default function Layout({ children }) {
     const [sidebarActive, setSidebarActive] = useState(false);
-    const { ripple } = useContext(PrimeReactContext);
-    const {
-        preset: { name: preset },
-        isDarkMode
-    } = useContext(PresetContext);
+    const { ripple, setPt } = useContext(PrimeReactContext);
+    const { preset } = useContext(PresetContext);
     const { isNewsActive } = useContext(NewsContext);
     const router = useRouter();
 
@@ -45,8 +42,12 @@ export default function Layout({ children }) {
         };
     }, []);
 
+    useEffect(() => {
+        setPt(preset.config);
+    }, [preset]);
+
     return (
-        <div className={wrapperClassName} data-p-theme={preset}>
+        <div className={wrapperClassName} data-p-theme={preset.name}>
             <Head>
                 <title>PrimeReact - React UI Component Library</title>
                 <meta charSet="UTF-8" />

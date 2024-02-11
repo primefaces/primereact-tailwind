@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { PrimeReactProvider } from 'primereact/api';
 import Layout from '@/components/layout';
 import { PresetProvider, PresetContext } from '@/providers/presetProvider';
@@ -7,16 +7,13 @@ import { GTagManager } from '@/components/analytics/analytics';
 import 'primeicons/primeicons.css';
 import '@/styles/tailwind/tailwind.css';
 import '@/styles/layout/layout.scss';
+import lara from '@/presets/lara';
 
 function AppContent({ component: Component, pageProps }) {
-    const {
-        preset: { config: preset }
-    } = useContext(PresetContext);
-
     const primereactConfig = {
         ripple: false,
         unstyled: true,
-        pt: preset
+        pt: lara
     };
 
     return (

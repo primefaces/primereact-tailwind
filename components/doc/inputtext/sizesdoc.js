@@ -5,9 +5,9 @@ import { InputText } from 'primereact/inputtext';
 export function SizesDoc(props) {
     const code = {
         basic: `
-<InputText type="text" className="p-inputtext-sm" placeholder="Small" />
+<InputText type="text" size="small" placeholder="Small" />
 <InputText type="text" placeholder="Normal" />
-<InputText type="text" className="p-inputtext-lg" placeholder="Large" />
+<InputText type="text" size="large" placeholder="Large" />
         `,
         javascript: `
 import React from 'react'; 
@@ -16,9 +16,9 @@ import { InputText } from "primereact/inputtext";
 export default function SizesDemo() {
     return (
         <div className="card flex flex-column align-items-center gap-3 ">
-            <InputText type="text" className="p-inputtext-sm" placeholder="Small" />
+            <InputText type="text" size="small" placeholder="Small" />
             <InputText type="text" placeholder="Normal" />
-            <InputText type="text" className="p-inputtext-lg" placeholder="Large" />
+            <InputText type="text" size="large" placeholder="Large" />
         </div>
     )
 }
@@ -30,9 +30,9 @@ import { InputText } from "primereact/inputtext";
 export default function SizesDemo() {
     return (
         <div className="card flex flex-column align-items-center gap-3 ">
-            <InputText type="text" className="p-inputtext-sm" placeholder="Small" />
+            <InputText type="text" size="small" placeholder="Small" />
             <InputText type="text" placeholder="Normal" />
-            <InputText type="text" className="p-inputtext-lg" placeholder="Large" />
+            <InputText type="text" size="large" placeholder="Large" />
         </div>
     )
 }
@@ -43,13 +43,13 @@ export default function SizesDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Apply <i>.p-inputtext-sm</i> to reduce the size of the input element or <i>.p-inputtext-lg</i> to enlarge it.
+                    InputText provides <i>small</i> and <i>large</i> sizes as alternatives to the standard.
                 </p>
             </DocSectionText>
-            <div className="card flex flex-column align-items-center gap-3 ">
-                <InputText type="text" className="p-inputtext-sm" placeholder="Small" />
+            <div className="card flex flex-col items-center gap-3">
+                <InputText type="text" size="small" placeholder="Small" />
                 <InputText type="text" placeholder="Normal" />
-                <InputText type="text" className="p-inputtext-lg" placeholder="Large" />
+                <InputText type="text" size="large" placeholder="Large" />
             </div>
             <DocSectionCode code={code} />
         </>
