@@ -28,6 +28,10 @@
                         {
                             "name": "InputText",
                             "to": "/inputtext"
+                        },
+                        {
+                            "name": "InputSwitch",
+                            "to": "/inputswitch"
                         }
                     ]
                 }

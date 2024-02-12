@@ -1,14 +1,12 @@
 import { PrimeReactContext } from 'primereact/api';
-import { Button } from 'primereact/button';
 import { InputSwitch } from 'primereact/inputswitch';
-import { SelectButton } from 'primereact/selectbutton';
-import { Sidebar } from 'primereact/sidebar';
 import { classNames } from 'primereact/utils';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import colorPresets from '@/presets/colors.json';
 import { PresetContext } from '@/providers/presetProvider';
 
-const PresetMenu = (props) => {
+const PresetMenu = () => {
+    const { ripple, setRipple } = useContext(PrimeReactContext);
     const { primaryColors, surfaceColors } = colorPresets;
     const {
         preset: { name: preset },
@@ -18,7 +16,6 @@ const PresetMenu = (props) => {
         updatePrimaryColors,
         updateSurfaceColors
     } = useContext(PresetContext);
-    const { ripple, setRipple } = useContext(PrimeReactContext);
 
     const isLara = preset === 'lara';
     const isWind = preset === 'wind';

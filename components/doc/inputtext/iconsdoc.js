@@ -21,7 +21,7 @@ import { InputText } from "primereact/inputtext";
 
 export default function IconsDemo() {
     return (
-        <div className="card flex flex-wrap justify-content-center gap-3 ">
+        <div className="card flex flex-wrap justify-center gap-3 ">
             <span className="relative">
                 <i className="pi pi-search absolute top-2/4 -mt-2 left-3 text-surface-400 dark:text-surface-600" />
                 <InputText placeholder="Search" className="pl-10" />
@@ -41,7 +41,7 @@ import { InputText } from "primereact/inputtext";
 
 export default function IconsDemo() {
     return (
-        <div className="card flex flex-wrap justify-content-center gap-3 ">
+        <div className="card flex flex-wrap justify-center gap-3 ">
             <span className="relative">
                 <i className="pi pi-search absolute top-2/4 -mt-2 left-3 text-surface-400 dark:text-surface-600" />
                 <InputText placeholder="Search" className="pl-10" />
@@ -64,7 +64,7 @@ export default function IconsDemo() {
                     Icons can be placed inside an input element by wrapping both the input and the icon with an element that has either <i>.p-input-icon-left</i> or <br /> <i>p-input-icon-right</i> className.
                 </p>
             </DocSectionText>
-            <div className="card flex flex-wrap justify-content-center gap-3 ">
+            <div className="card flex flex-wrap justify-center gap-3 ">
                 <span className="relative">
                     <i className="pi pi-search absolute top-2/4 -mt-2 left-3 text-surface-400 dark:text-surface-600" />
                     <InputText placeholder="Search" className="pl-10" />

@@ -1,34 +1,34 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from 'primereact/inputtext';
+import { InputSwitch } from 'primereact/inputswitch';
 
-export function InvalidDoc(props) {
+export function DisabledDoc(props) {
     const code = {
         basic: `
-<InputText className="p-invalid" />
+<InputSwitch disabled />
         `,
         javascript: `
-import React from 'react'; 
-import { InputText } from "primereact/inputtext";
+import React, { useState } from "react";
+import { InputSwitch } from "primereact/inputswitch";
 
-export default function InvalidDemo() {
+export default function DisabledDemo() {
     return (
         <div className="card flex justify-center">
-            <InputText className="p-invalid" />
+            <InputSwitch disabled />
         </div>
-    )
+    );
 }
         `,
         typescript: `
-import React from 'react'; 
-import { InputText } from "primereact/inputtext";
+import React, { useState } from "react";
+import { InputSwitch } from "primereact/inputswitch";
 
-export default function InvalidDemo() {
+export default function DisabledDemo() {
     return (
         <div className="card flex justify-center">
-            <InputText className="p-invalid" />
+            <InputSwitch disabled />
         </div>
-    )
+    );
 }
         `
     };
@@ -37,11 +37,11 @@ export default function InvalidDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Invalid state style is added using the <i>p-invalid</i> class to indicate a failed validation.
+                    When <i>disabled</i> is present, the element cannot be edited and focused.
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <InputText className="p-invalid" />
+                <InputSwitch disabled />
             </div>
             <DocSectionCode code={code} />
         </>
