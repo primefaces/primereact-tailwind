@@ -26,6 +26,10 @@
                     "name": "Form",
                     "children": [
                         {
+                            "name": "Calendar",
+                            "to": "/calendar"
+                        },
+                        {
                             "name": "InputText",
                             "to": "/inputtext"
                         },

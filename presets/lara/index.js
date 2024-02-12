@@ -1,6 +1,7 @@
 import global from './global';
 import inputtext from './inputtext';
 import inputswitch from './inputswitch';
+import calendar from './calendar';
 
 export default {
     global,
@@ -8,5 +9,6 @@ export default {
 
     //forms
     inputtext,
+    calendar,
     inputswitch
 };
