@@ -6,7 +6,7 @@ export function HelpTextDoc(props) {
     const code = {
         basic: `
 <div className="flex flex-col gap-2">
-    <label for="username">Username</label>
+    <label htmlFor="username">Username</label>
     <InputText id="username" aria-describedby="username-help" />
     <small id="username-help">Enter your username to reset your password.</small>
 </div>
@@ -19,7 +19,7 @@ export default function HelpTextDemo() {
     return (
         <div className="card flex justify-center">
            <div className="flex flex-col gap-2">
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <InputText id="username" aria-describedby="username-help" />
                 <small id="username-help">Enter your username to reset your password.</small>
             </div>
@@ -35,7 +35,7 @@ export default function HelpTextDemo() {
     return (
         <div className="card flex justify-center">
             <div className="flex flex-col gap-2">
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <InputText id="username" aria-describedby="username-help" />
                 <small id="username-help">Enter your username to reset your password.</small>
             </div>
@@ -54,7 +54,7 @@ export default function HelpTextDemo() {
             </DocSectionText>
             <div className="card flex justify-center">
                 <div className="flex flex-col gap-2">
-                    <label for="username">Username</label>
+                    <label htmlFor="username">Username</label>
                     <InputText id="username" aria-describedby="username-help" />
                     <small id="username-help">Enter your username to reset your password.</small>
                 </div>
