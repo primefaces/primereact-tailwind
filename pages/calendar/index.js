@@ -1,5 +1,8 @@
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { BasicDoc } from '@/components/doc/calendar/basicdoc';
+import { FormatDoc } from '@/components/doc/calendar/formatdoc';
+import { LocaleDoc } from '@/components/doc/calendar/localedoc';
+import { IconDoc } from '@/components/doc/calendar/icondoc';
 
 const CalendarDemo = () => {
     const docs = [
@@ -7,6 +10,21 @@ const CalendarDemo = () => {
             id: 'basic',
             label: 'Basic',
             component: BasicDoc
+        },
+        {
+            id: 'format',
+            label: 'Format',
+            component: FormatDoc
+        },
+        {
+            id: 'locale',
+            label: 'Locale',
+            component: LocaleDoc
+        },
+        {
+            id: 'icon',
+            label: 'Icon',
+            component: IconDoc
         }
     ];
 

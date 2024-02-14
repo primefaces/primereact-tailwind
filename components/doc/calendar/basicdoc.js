@@ -18,7 +18,7 @@ export default function BasicDemo() {
     const [date, setDate] = useState(null);
 
     return (
-        <div className="card flex justify-content-center">
+        <div className="card flex  justify-center">
             <Calendar value={date} onChange={(e) => setDate(e.value)} />
         </div>
     )
@@ -33,7 +33,7 @@ export default function BasicDemo() {
     const [date, setDate] = useState<Nullable<Date>>(null);
 
     return (
-        <div className="card flex justify-content-center">
+        <div className="card flex  justify-center">
             <Calendar value={date} onChange={(e) => setDate(e.value)} />
         </div>
     )
@@ -48,8 +48,8 @@ export default function BasicDemo() {
                     Calendar is used a controlled input component with <i>value</i> and <i>onChange</i> properties.
                 </p>
             </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
+            <div className="card flex  justify-center">
+                <Calendar value={date} onChange={(e) => setDate(e.value)} />
             </div>
             <DocSectionCode code={code} />
         </>

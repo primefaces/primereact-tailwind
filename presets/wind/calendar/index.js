@@ -7,9 +7,10 @@ export default {
             'inline-flex',
             'max-w-full',
             'relative',
-
+            'shadow-sm',
+            'rounded-md',
             // Misc
-            { 'opacity-60 select-none pointer-events-none cursor-default': props.disabled }
+            { 'opacity-40 select-none pointer-events-none cursor-default': props.disabled }
         )
     }),
     input: ({ props }) => ({
@@ -19,21 +20,22 @@ export default {
                 'flex flex-auto',
 
                 // Font
-                'font-sans leading-none',
+                'font-sans leading-none  sm:text-sm',
 
                 // Colors
-                'text-surface-600 dark:text-surface-200',
+                'text-surface-900 dark:text-surface-0',
                 'placeholder:text-surface-400 dark:placeholder:text-surface-500',
                 'bg-surface-0 dark:bg-surface-900',
-                'border border-surface-300 dark:border-surface-600',
+                'ring-1 ring-inset ring-surface-300 dark:ring-surface-700 ring-offset-0',
 
                 // Spacing
-                'm-0 p-3',
+                'm-0 py-1.5 px-3',
+                '-ml-[1px]',
 
                 // Shape
                 'appearance-none',
                 { 'rounded-md': !props.showIcon || props.iconDisplay == 'input' },
-                { 'rounded-l-md  flex-1 pr-9': props.showIcon && props.iconDisplay !== 'input' },
+                { 'rounded-l-md  flex-1 pr-9 ': props.showIcon && props.iconDisplay !== 'input' },
                 { 'rounded-md flex-1 pr-9': props.showIcon && props.iconDisplay === 'input' },
 
                 // Transitions
@@ -41,37 +43,31 @@ export default {
                 'duration-200',
 
                 // States
-                'hover:border-primary-500 dark:hover:border-primary-400',
-                'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-500/50 dark:focus:ring-primary-400/50'
+                'outline-none focus:ring-primary-500 dark:focus:ring-primary-400'
             )
         }
     }),
     inputicon: {
-        className: classNames('absolute top-[50%] -mt-2', 'text-surface-600 dark:text-surface-200', 'right-[.75rem]')
+        className: classNames('sm:text-sm ', 'absolute top-[50%] -mt-2', 'text-surface-600 dark:text-surface-200', 'right-[.75rem]')
     },
     dropdownbutton: {
         root: {
             className: classNames(
-                'relative',
-
+                'relative text-sm',
                 // Alignments
                 'items-center inline-flex text-center align-bottom',
-
                 // Shape
                 'rounded-r-md',
-
                 // Size
-                'px-4 py-3 leading-none',
-
+                'px-2.5 py-1.5 leading-none',
                 // Colors
-                'text-white dark:text-surface-900',
-                'bg-primary-500 dark:bg-primary-400',
-                'border border-primary-500 dark:border-primary-400',
-
+                'text-surface-600 dark:text-surface-100',
+                'bg-surface-100 dark:bg-surface-800',
+                'ring-1 ring-inset ring-surface-300 dark:ring-surface-700',
                 // States
-                'focus:outline-none focus:outline-offset-0 focus:ring',
-                'hover:bg-primary-600 dark:hover:bg-primary-300 hover:border-primary-600 dark:hover:border-primary-300',
-                'focus:ring-primary-400/50 dark:focus:ring-primary-300/50'
+                'hover:bg-surface-200 dark:hover:bg-surface-700',
+                'focus:outline-none focus:outline-offset-0 focus:ring-1',
+                'focus:ring-primary-500 dark:focus:ring-primary-400'
             )
         }
     },
@@ -89,14 +85,14 @@ export default {
             { 'p-2 min-w-full': props.inline },
 
             // Shape
-            'border rounded-lg',
+            'rounded-lg',
             {
-                'shadow-md': !props.inline
+                'shadow-md ring-1': !props.inline
             },
 
             // Colors
             'bg-surface-0 dark:bg-surface-800',
-            'border-surface-200 dark:border-surface-700',
+            'ring-surface-200 dark:ring-surface-700',
 
             //misc
             { 'overflow-x-auto': props.inline }
@@ -105,69 +101,61 @@ export default {
     datepickerMask: {
         className: classNames('fixed top-0 left-0 w-full h-full', 'flex items-center justify-center', 'bg-black bg-opacity-90')
     },
-    header: {
+    header: ({ props }) => ({
         className: classNames(
             //Font
-            'font-semibold',
+            'font-semibold text-md',
 
             // Flexbox and Alignment
             'flex items-center justify-between',
 
             // Spacing
-            'p-2',
             'm-0',
+            { 'py-2 pl-2 pb-4': !(props.numberOfMonths > 1), 'py-2 pb-4': props.numberOfMonths > 1 },
 
             // Shape
-            'border-b',
             'rounded-t-md',
 
             // Colors
             'text-surface-700 dark:text-white/80',
-            'bg-surface-0 dark:bg-surface-800',
-            'border-surface-200 dark:border-surface-700'
+            'bg-surface-0 dark:bg-surface-800'
         )
-    },
-    previousbutton: {
+    }),
+    previousbutton: ({ props }) => ({
         className: classNames(
             'relative',
 
             // Flexbox and Alignment
             'inline-flex items-center justify-center',
-
+            { ' order-2': !(props.numberOfMonths > 1), 'order-1': props.numberOfMonths > 1 },
             // Size
-            'w-8 h-8',
-            'p-0 m-0',
-
-            // Shape
-            'rounded-full',
+            'p-1.5 m-0',
 
             // Colors
-            'text-surface-600 dark:text-white/70',
+            'text-surface-500 dark:text-white/60',
             'border-0',
             'bg-transparent',
 
-            // Transitions
-            'transition-colors duration-200 ease-in-out',
-
             // States
             'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
 
             // Misc
             'cursor-pointer overflow-hidden'
         )
-    },
-    title: {
+    }),
+    title: ({ props }) => ({
         className: classNames(
             // Text
-            'leading-8',
-            'mx-auto my-0'
+            'leading-6',
+            'my-0',
+            'order-1',
+            { 'mr-auto': !(props.numberOfMonths > 1), ' mx-auto': props.numberOfMonths > 1 }
         )
-    },
+    }),
     monthTitle: {
         className: classNames(
             // Font
-            'text-base leading-5',
+            'text-base leading-6',
             'font-semibold',
 
             // Colors
@@ -177,7 +165,6 @@ export default {
             'transition duration-200',
 
             // Spacing
-            'p-2',
             'm-0 mr-2',
 
             // States
@@ -190,7 +177,7 @@ export default {
     yearTitle: {
         className: classNames(
             // Font
-            'text-base leading-5',
+            'text-base leading-6',
             'font-semibold',
 
             // Colors
@@ -200,7 +187,6 @@ export default {
             'transition duration-200',
 
             // Spacing
-            'p-2',
             'm-0',
 
             // States
@@ -210,42 +196,32 @@ export default {
             'cursor-pointer'
         )
     },
-    nextbutton: {
+    nextbutton: ({ props }) => ({
         className: classNames(
             'relative',
 
             // Flexbox and Alignment
-            'inline-flex items-center justify-center',
+            'inline-flex items-center justify-center order-3',
+            { ' order-3': !(props.numberOfMonths > 1), 'order-1': props.numberOfMonths > 1 },
 
             // Size
-            'w-8 h-8',
-            'p-0 m-0',
-
-            // Shape
-            'rounded-full',
+            'p-1.5 m-0',
 
             // Colors
-            'text-surface-600 dark:text-white/70',
+            'text-surface-500 dark:text-white/60',
             'border-0',
             'bg-transparent',
 
-            // Transitions
-            'transition-colors duration-200 ease-in-out',
-
             // States
             'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
 
             // Misc
             'cursor-pointer overflow-hidden'
         )
-    },
+    }),
     table: {
         className: classNames(
-            // Font
-            'text-base leading-none',
             // Size & Shape
-            'border-collapse',
             'w-full',
 
             // Spacing
@@ -258,16 +234,19 @@ export default {
             'p-0 md:p-2'
         )
     },
+    tablebodyrow: {
+        className: classNames('border-b border-surface-200 dark:border-surface-700 last:border-b-0')
+    },
     weekheader: {
-        className: classNames('leading-5', 'text-surface-600 dark:text-white/70', 'opacity-60 cursor-default')
+        className: classNames('leading-6 text-sm font-normal', 'text-surface-600 dark:text-white/70', 'opacity-40 cursor-default', 'mb-2')
     },
     weeknumber: {
-        className: classNames('text-surface-600 dark:text-white/70', 'opacity-60 cursor-default')
+        className: classNames('text-surface-600 dark:text-white/70 font-normal', 'opacity-40 cursor-default')
     },
     weekday: {
         className: classNames(
             // Colors
-            'text-surface-500 dark:text-white/60'
+            'text-surface-500 dark:text-white/60 font-normal'
         )
     },
     day: {
@@ -290,17 +269,16 @@ export default {
             // Colors
             {
                 'text-surface-600 dark:text-white/70 bg-transparent': !context.selected && !context.disabled,
-                'text-primary-700 bg-primary-100': context.selected && !context.disabled
+                'text-primary-500  dark:text-primary-400': context.selected && !context.disabled
             },
 
             // States
             'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
             {
-                'hover:bg-surface-100 dark:hover:bg-surface-800/80': !context.selected && !context.disabled,
-                'hover:bg-primary-200': context.selected && !context.disabled
+                'hover:bg-surface-100 dark:hover:bg-surface-800/80': !context.disabled
             },
             {
-                'opacity-60 cursor-default': context.disabled,
+                'opacity-40 cursor-default': context.disabled,
                 'cursor-pointer': !context.disabled
             }
         )
@@ -312,25 +290,26 @@ export default {
             'mx-auto',
 
             // Shape & Size
-            'w-10 h-10',
+            'w-8 h-8',
             'rounded-full',
-            'border-transparent border',
 
             // Colors
             {
-                'text-primary-500 dark:text-primary-400': context.date?.today,
+                'text-surface-0 bg-surface-900 dark:text-surface-900 dark:bg-surface-0': context.date?.today && !context.selected && !context.disabled,
                 'text-surface-600 dark:text-white/70 bg-transparent': !context.selected && !context.disabled && !context.date?.today,
-                'text-primary-700 bg-primary-100 dark:text-surface-0 dark:bg-primary-300/40': context.selected && !context.disabled
+                'text-primary-500 dark:text-primary-400': context.selected && !context.disabled && !context.date?.today,
+                'text-primary-200 dark:text-primary-600 bg-surface-900 dark:bg-surface-0': context.selected && !context.disabled && context.date?.today
             },
 
             // States
-            'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
+            'focus:outline-none focus:outline-offset-0 focus:ring-1 focus:ring-primary-500 dark:focus:ring-primary-400',
             {
-                'hover:bg-surface-100 dark:hover:bg-surface-600/80': !context.selected && !context.disabled,
-                'hover:bg-primary-200 dark:hover:bg-primary-200/40': context.selected && !context.disabled
+                'hover:bg-surface-100 dark:hover:bg-surface-600/80': !context.disabled,
+                'hover:bg-surface-700 dark:hover:bg-surface-200': !context.disabled && context.date?.today
             },
+
             {
-                'opacity-60 cursor-default': context.disabled,
+                'opacity-40 cursor-default': context.disabled,
                 'cursor-pointer': !context.disabled
             }
         )
@@ -345,22 +324,26 @@ export default {
         className: classNames(
             // Flexbox and Alignment
             'inline-flex items-center justify-center',
+
             // Size
             'w-1/3',
-            'p-2',
+            'px-2.5 py-1.5',
+            'mt-1',
+            'text-md leading-none',
+
             // Shape
             'rounded-md',
+
             // Colors
             {
                 'text-surface-600 dark:text-white/70 bg-transparent': !context.selected && !context.disabled,
-                'text-primary-700 bg-primary-100 dark:text-surface-0 dark:bg-primary-300/40': context.selected && !context.disabled
+                'text-primary-500 dark:text-primary-400': context.selected && !context.disabled
             },
+
             // States
-            'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
-            {
-                'hover:bg-surface-100 dark:hover:bg-surface-600/80': !context.selected && !context.disabled,
-                'hover:bg-primary-200 dark:hover:bg-primary-200/40': context.selected && !context.disabled
-            },
+            'focus:outline-none focus:outline-offset-0 focus:ring-1 focus:ring-primary-500 dark:focus:ring-primary-400',
+            'hover:bg-surface-100 dark:hover:bg-surface-600/80',
+
             // Misc
             'cursor-pointer'
         )
@@ -375,22 +358,26 @@ export default {
         className: classNames(
             // Flexbox and Alignment
             'inline-flex items-center justify-center',
+
             // Size
             'w-1/3',
-            'p-2',
+            'px-2.5 py-1.5',
+            'mt-1',
+            'text-md leading-none',
+
             // Shape
             'rounded-md',
+
             // Colors
             {
                 'text-surface-600 dark:text-white/70 bg-transparent': !context.selected && !context.disabled,
-                'text-primary-700 bg-primary-100 dark:text-surface-0 dark:bg-primary-300/40': context.selected && !context.disabled
+                'text-primary-500 dark:text-primary-400': context.selected && !context.disabled
             },
+
             // States
-            'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
-            {
-                'hover:bg-surface-100 dark:hover:bg-surface-600/80': !context.selected && !context.disabled,
-                'hover:bg-primary-200 dark:hover:bg-primary-200/40': context.selected && !context.disabled
-            },
+            'focus:outline-none focus:outline-offset-0 focus:ring-1 focus:ring-primary-500 dark:focus:ring-primary-400',
+            'hover:bg-surface-100 dark:hover:bg-surface-600/80',
+
             // Misc
             'cursor-pointer'
         )
@@ -401,12 +388,8 @@ export default {
             'flex',
             'justify-center items-center',
 
-            // Borders
-            'border-t-1',
-            'border-solid border-surface-200',
-
             // Spacing
-            'p-2'
+            'p-1.5'
         )
     },
     separatorcontainer: {
@@ -478,23 +461,15 @@ export default {
             'inline-flex items-center justify-center',
 
             // Size
-            'w-8 h-8',
-            'p-0 m-0',
-
-            // Shape
-            'rounded-full',
+            'p-1.5 m-0',
 
             // Colors
-            'text-surface-600 dark:text-white/70',
+            'text-surface-500 dark:text-white/60',
             'border-0',
             'bg-transparent',
 
-            // Transitions
-            'transition-colors duration-200 ease-in-out',
-
             // States
             'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
 
             // Misc
             'cursor-pointer overflow-hidden'
@@ -508,23 +483,15 @@ export default {
             'inline-flex items-center justify-center',
 
             // Size
-            'w-8 h-8',
-            'p-0 m-0',
-
-            // Shape
-            'rounded-full',
+            'p-1.5 m-0',
 
             // Colors
-            'text-surface-600 dark:text-white/70',
+            'text-surface-500 dark:text-white/60',
             'border-0',
             'bg-transparent',
 
-            // Transitions
-            'transition-colors duration-200 ease-in-out',
-
             // States
             'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
 
             // Misc
             'cursor-pointer overflow-hidden'
@@ -543,7 +510,7 @@ export default {
 
             // Borders
             'border-l',
-            'border-surface-200',
+            'border-surface-200 dark:border-surface-700',
 
             // Spacing
             'pr-0.5',
@@ -562,7 +529,7 @@ export default {
             'flex justify-between items-center',
 
             // Spacing
-            'py-3 px-0',
+            'pt-2.5 pb-1.5 px-0',
 
             // Shape
             'border-t border-surface-200 dark:border-surface-700'
@@ -575,7 +542,7 @@ export default {
                 'inline-flex items-center justify-center',
 
                 // Spacing
-                'px-4 py-3 leading-none',
+                'px-2.5 py-1.5 text-sm leading-none',
 
                 // Shape
                 'rounded-md',
@@ -588,7 +555,8 @@ export default {
                 'transition-colors duration-200 ease-in-out',
 
                 // States
-                'focus:outline-none focus:outline-offset-0 focus:ring',
+                'focus:outline-none focus:outline-offset-0 focus:ring-2 ring-inset',
+                'focus:ring-primary-500 dark:focus:ring-primary-400',
                 'hover:bg-primary-300/20',
 
                 // Misc
@@ -603,7 +571,7 @@ export default {
                 'inline-flex items-center justify-center',
 
                 // Spacing
-                'px-4 py-3 leading-none',
+                'px-2.5 py-1.5 text-sm leading-none',
 
                 // Shape
                 'rounded-md',
@@ -616,7 +584,8 @@ export default {
                 'transition-colors duration-200 ease-in-out',
 
                 // States
-                'focus:outline-none focus:outline-offset-0 focus:ring',
+                'focus:outline-none focus:outline-offset-0 focus:ring-2 ring-inset',
+                'focus:ring-primary-500 dark:focus:ring-primary-400',
                 'hover:bg-primary-300/20',
 
                 // Misc

@@ -10,7 +10,7 @@ export default {
         }
     }) => ({
         className:
-            root.className ||
+            root?.className ||
             classNames(
                 props.className,
                 // Font

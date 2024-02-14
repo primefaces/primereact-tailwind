@@ -10,7 +10,7 @@ export default {
         }
     }) => ({
         className:
-            root.className ||
+            root?.className ||
             classNames(
                 // Font
                 'font-sans leading-none',
